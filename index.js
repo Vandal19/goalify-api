@@ -1,10 +1,15 @@
-const express = require('express')
+const express = require("express");
+const dotenv = require("dotenv").config();
+const {errorHandler} = require("./middleware/errorMiddleware")
+const port = process.env.PORT || 8000;
+
 const app = express();
-const dotenv = require('dotenv').config()
-const port = process.env.PORT || 8000
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-const goalRoutes = require('./routes/goalsRoute');
+app.use(errorHandler);
+const goalRoutes = require("./routes/goalsRoute");
 
-app.use('/api', goalRoutes);
+app.use("/api", goalRoutes);
 
 app.listen(port, () => console.log(`listening on http://localhost:${port}`));

@@ -1,3 +1,5 @@
+
+
 const getGoals = async (req, res) => {
   try {
     await res.status(200).json({ message: "Get goals" });
@@ -6,12 +8,12 @@ const getGoals = async (req, res) => {
   }
 };
 
-const setGoal = async (req, res) => {
-  try {
-    await res.status(200).json({ message: "Set Goal" });
-  } catch (error) {
-    console.error(error.response ? error.response.body : error);
+const setGoal = (req, res) => {
+  if (!req.body.text) {
+    res.status(400)
+    throw new Error('Please add a text field')
   }
+     res.status(200).json({ message: "Set Goal" });
 };
 
 const updateGoal = async (req, res) => {
