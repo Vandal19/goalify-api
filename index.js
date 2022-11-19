@@ -12,8 +12,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(errorHandler);
-const goalRoutes = require("./routes/goalsRoute");
+const goalRoute = require("./routes/goalsRoute");
+const userRoute = require("./routes/userRoute")
 
-app.use("/api", goalRoutes);
+app.use("/api", goalRoute);
+app.use("/api", userRoute);
 
 app.listen(port, () => console.log(`listening on http://localhost:${port}`));
